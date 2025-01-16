@@ -39,6 +39,41 @@ function addProductToCart(prodid) {
         cart.push({cartprodid: prodid, quantity: 1})
     }
     
-
+    printCart()
     console.log(cart)
 }
+
+//Lage en funksjon som skriver ut oppdatert versjon av handlevognen
+function printCart() {
+    //Starte med en tom variabel vi kan fylle med HTML
+    let cartHTML = ""
+    //Lag klar variabel for pris:
+    let cartTotal = 0;
+    //Lag variabel for antall produkter:
+    let cartNumber = 0;
+
+    //Gå gjennom cart-arrayen og generere HTML for hvert produkt:
+    cart.map((cartprod, index) => {
+        const currentProduct = products.findIndex(p => p.prodid === cartprod.cartprodid)
+        const currentProductInfo = products[currentProduct]
+        cartHTML += `<article class="cart-product">
+                    <span class="title">${currentProductInfo.title}</span>
+                    <span class="price">${currentProductInfo.price},-</span>
+                    <span class="quantity">x<span class="quantity-number">${cartprod.quantity}</span></span>
+                    <button class="delete">x</button>
+                </article>`
+        //Regn ut totalsum:
+        cartTotal += currentProductInfo.price * cartprod.quantity
+        //Regn ut antall produkter:
+        cartNumber += cartprod.quantity
+    })
+
+    //Skrive ut generert HTML til index-fila:
+    document.getElementById("cart-products").innerHTML = cartHTML
+    //Skrive ut totalpris:
+    document.getElementById("cart-total").innerHTML = cartTotal
+    //Skrive ut antall produkter:
+    document.getElementById("cartcount").innerHTML = cartNumber
+}
+
+printCart()
