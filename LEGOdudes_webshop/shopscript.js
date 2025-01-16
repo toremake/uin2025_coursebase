@@ -26,7 +26,19 @@ document.getElementById("shoppingcart").addEventListener("click", function() {
 //Lage addProductToCart()
 function addProductToCart(prodid) {
     console.log("Du vil legge til produktid " + prodid)
+    //bruk .some for å sjekke om prodid allerede finnes i cart:
+    const idExists = cart.some(cartprod => cartprod.cartprodid === prodid)
 
-    cart.push({cartprodid: prodid, quantity: 1})
+    if(idExists) {
+        //Oppdatere dette produktets quantity
+        //Først: Finne indexen til denne ID-en:
+        const index = cart.findIndex(p => p.cartprodid === prodid)
+        //Så: oppdatere riktig quantity
+        cart[index].quantity++
+    } else {
+        cart.push({cartprodid: prodid, quantity: 1})
+    }
+    
+
     console.log(cart)
 }
