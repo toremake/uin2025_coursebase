@@ -12,8 +12,21 @@ products.map((product, index) => productHTML +=
                 <a href="#KATEGORISIDE">Ninjago</a>
                 <h3>${product.title}</h3>
                 <p>Kr. ${product.price},-</p>
-                <button>Legg i handlekurv</button>
+                <button onclick="addProductToCart(${product.prodid})">Legg i handlekurv</button>
             </article>`)
 
 //Finn #productlist, og fyll den med verdiene i variabelen productHTML:
 document.getElementById("productlist").innerHTML = productHTML
+
+//Lage toggle-funksjonalitet for handlevogn
+document.getElementById("shoppingcart").addEventListener("click", function() {
+    document.getElementById("cart").classList.toggle("visible")
+})
+
+//Lage addProductToCart()
+function addProductToCart(prodid) {
+    console.log("Du vil legge til produktid " + prodid)
+
+    cart.push({cartprodid: prodid, quantity: 1})
+    console.log(cart)
+}

@@ -165,6 +165,8 @@ main {
     border-left: 5px solid var(--green);
     border-bottom: 5px solid var(--green);
     z-index: 999;
+    opacity: 0;
+    transition: ease-in-out .4s;
 
     #cart-products {
         display: flex;
@@ -201,4 +203,8 @@ main {
             }
         }
     }
+}
+
+#cart.visible {
+    opacity: 1;
 }
