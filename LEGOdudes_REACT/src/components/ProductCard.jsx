@@ -1,5 +1,9 @@
 // Produktkort-komponent som tar inn et produkt som prop
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, setCartCount }) {
+  const handleClick = () => {
+    setCartCount(10);
+  };
+
   return (
     <article className="product-card">
       {/* Viser produktbilde basert på filnavnet fra produktobjektet */}
@@ -17,7 +21,7 @@ export default function ProductCard({ product }) {
       <p>Kr. {product.price},-</p>
 
       {/* Knapp for å legge produktet i handlekurven */}
-      <button>Legg i handlekurv</button>
+      <button onClick={handleClick}>Legg i handlekurv</button>
     </article>
   );
 }
