@@ -15,13 +15,20 @@ import "./styles/style.css";
 // Definerer hovedkomponenten App
 function App() {
   const [cartCount, setCartCount] = useState(0);
+  const [toggle, setToggle] = useState(false);
+  const [cart, setCart] = useState([]);
   return (
     <div id="content">
       {/* Legger til handlevogn-komponenten */}
-      <Cart />
+      <Cart toggle={toggle} cart={cart} />
       {/* Overskrift-seksjon med logo og handlekurvknapp */}
-      <Header cartCount={cartCount} />
-      <PageContent products={products} setCartCount={setCartCount} />
+      <Header cartCount={cartCount} setToggle={setToggle} toggle={toggle} />
+      <PageContent
+        products={products}
+        setCartCount={setCartCount}
+        cart={cart}
+        setCart={setCart}
+      />
 
       {/* Footer-seksjon */}
       <footer>

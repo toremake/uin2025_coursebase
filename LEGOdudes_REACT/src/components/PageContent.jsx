@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CategoryHeading from "./CategoryHeading";
 import ProductCard from "./ProductCard";
-export default function PageContent({ products, setCartCount }) {
+export default function PageContent({ products, setCartCount, setCart, cart }) {
   const [title, setTitle] = useState("Ninjago");
 
   return (
@@ -17,6 +17,8 @@ export default function PageContent({ products, setCartCount }) {
             product={product}
             key={`FCT_${index}`}
             setCartCount={setCartCount}
+            cart={cart}
+            setCart={setCart}
           />
         ))}
       </div>
