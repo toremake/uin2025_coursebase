@@ -1,0 +1,21 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+
+  input,
+  textarea {
+    background-color: #fff;
+    padding: 1rem;
+    border: 1px solid #efefef;
+    border-radius: 10px;
+  }
+
+  input {
+    max-width: 350px;
+  }
+  textarea {
+    min-height: 350px;
+  }
+}
