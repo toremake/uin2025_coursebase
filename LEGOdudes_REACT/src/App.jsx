@@ -11,6 +11,9 @@ import PageContent from "./components/PageContent";
 
 // Importerer stilfilen for appen
 import "./styles/style.css";
+import { Route, Routes } from "react-router";
+import Home from "./components/Home";
+import About from "./components/About";
 
 // Definerer hovedkomponenten App
 function App() {
@@ -18,23 +21,10 @@ function App() {
   const [toggle, setToggle] = useState(false);
   const [cart, setCart] = useState([]);
   return (
-    <div id="content">
-      {/* Legger til handlevogn-komponenten */}
-      <Cart toggle={toggle} cart={cart} />
-      {/* Overskrift-seksjon med logo og handlekurvknapp */}
-      <Header cartCount={cartCount} setToggle={setToggle} toggle={toggle} />
-      <PageContent
-        products={products}
-        setCartCount={setCartCount}
-        cart={cart}
-        setCart={setCart}
-      />
-
-      {/* Footer-seksjon */}
-      <footer>
-        <p>2025 &copy; Legodudes</p>
-      </footer>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home toggle={toggle} setToggle={setToggle} cart={cart} setCart={setCart} cartCount={cartCount} setCartCount={setCartCount} products={products} />}></Route>
+      <Route path="/about" element={<About />}></Route>
+    </Routes>
   );
 }
 
