@@ -11,6 +11,7 @@ import Layout from "./components/Layout"; // En Layout-komponent (sannsynligvis 
 import { Routes, Route } from "react-router-dom"; // Brukes for å håndtere side-navigering
 import CategoryPage from "./components/CategoryPage"; // En side som viser en kategori
 import Home from "./components/Home"; // Hjemmesiden til appen
+import GamePage from "./components/GamePage";
 
 // Hovedkomponenten i React-appen
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/" element={<Home games={games} />} />
         {/* ":slug" betyr at denne ruten kan være en hvilken som helst kategori */}
         <Route path=":slug" element={<CategoryPage />} />
+        <Route path="games/:game_id" element={<GamePage />} />
       </Routes>
     </Layout>
   );
