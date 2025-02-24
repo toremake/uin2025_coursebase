@@ -1,0 +1,22 @@
+#root {
+  text-align: left;
+  width: 100%;
+}
+
+header {
+  nav {
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+
+    a {
+      color: #fff;
+    }
+  }
+}
+
+.flex-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
