@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom"; // Brukes for å håndtere sid
 import CategoryPage from "./components/CategoryPage"; // En side som viser en kategori
 import Home from "./components/Home"; // Hjemmesiden til appen
 import GamePage from "./components/GamePage";
+import ContentPage from "./components/ContentPage";
 
 // Hovedkomponenten i React-appen
 function App() {
@@ -38,9 +39,10 @@ function App() {
       {/* Setter opp rutene (sidene) i appen */}
       <Routes>
         {/* "/" betyr hjemmesiden, sender games som en prop til Home-komponenten */}
-        <Route path="/" element={<Home games={games} />} />
+        <Route path="/" element={<Home games={games} setGames={setGames} />} />
         {/* ":slug" betyr at denne ruten kan være en hvilken som helst kategori */}
         <Route path=":slug" element={<CategoryPage />} />
+        <Route path=":slug/:content" element={<ContentPage />} />
         <Route path="games/:game_id" element={<GamePage />} />
       </Routes>
     </Layout>

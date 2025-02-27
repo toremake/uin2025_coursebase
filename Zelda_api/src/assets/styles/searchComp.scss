@@ -1,0 +1,17 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+
+  input {
+    padding: 1rem;
+  }
+
+  button {
+    width: fit-content;
+    background-color: #fff;
+    color: #1b1b1b;
+  }
+}
