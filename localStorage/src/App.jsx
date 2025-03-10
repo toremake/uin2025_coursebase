@@ -11,14 +11,16 @@ import Welcome from "./components/Welcome";
 function App() {
   const [signedIn, setSignedIn] = useState(false);
 
-  const [existingUser, setExistingUser] = useState(
-    localStorage.getItem("Users")
-  );
+  const [existingUser, setExistingUser] = useState();
 
-  console.log("ExistingUser:", JSON.parse(existingUser));
+  useEffect(() => {
+    setExistingUser(localStorage.getItem("user"));
+  });
+
+  console.log(signedIn);
 
   return (
-    <Layout>
+    <Layout setSignedIn={setSignedIn} signedIn={signedIn}>
       <Routes>
         <Route
           path="/"
@@ -30,7 +32,12 @@ function App() {
             )
           }
         />
-        <Route path="login" element={<Login />} />
+        <Route
+          path="login"
+          element={
+            <Login setSignedIn={setSignedIn} existingUser={existingUser} />
+          }
+        />
         <Route path="signup" element={<Signup />} />
       </Routes>
     </Layout>

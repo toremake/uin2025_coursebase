@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import "../styles/layout.scss";
 
-export default function Layout({ children }) {
+export default function Layout({ children, setSignedIn, signedIn }) {
+  console.log(signedIn);
   return (
     <>
       <header>
@@ -10,12 +11,23 @@ export default function Layout({ children }) {
             Connectis
           </Link>
           <ul>
-            <li>
-              <Link to="login">Log in</Link>
-            </li>
-            <li>
-              <Link to="signup">Signup</Link>
-            </li>
+            {signedIn ? (
+              <>
+                <li>Username</li>
+                <li>
+                  <button onClick={() => setSignedIn(false)}>Logg ut</button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="login">Log in</Link>
+                </li>
+                <li>
+                  <Link to="signup">Signup</Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </header>
