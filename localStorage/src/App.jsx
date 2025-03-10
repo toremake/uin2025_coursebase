@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -11,10 +11,25 @@ import Welcome from "./components/Welcome";
 function App() {
   const [signedIn, setSignedIn] = useState(false);
 
+  const [existingUser, setExistingUser] = useState(
+    localStorage.getItem("Users")
+  );
+
+  console.log("ExistingUser:", JSON.parse(existingUser));
+
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={signedIn ? <Welcome /> : <Login />} />
+        <Route
+          path="/"
+          element={
+            signedIn ? (
+              <Welcome />
+            ) : (
+              <Login setSignedIn={setSignedIn} existingUser={existingUser} />
+            )
+          }
+        />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
       </Routes>
