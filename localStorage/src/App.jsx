@@ -11,11 +11,29 @@ import Welcome from "./components/Welcome";
 function App() {
   const [signedIn, setSignedIn] = useState(false);
 
+  const [storageUser, setStorageUser] = useState(localStorage.getItem("user"));
+
+  console.log("Kommer fra storage", storageUser);
+
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={signedIn ? <Welcome /> : <Login />} />
-        <Route path="login" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            signedIn ? (
+              <Welcome />
+            ) : (
+              <Login storageUser={storageUser} setSignedIn={setSignedIn} />
+            )
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <Login storageUser={storageUser} setSignedIn={setSignedIn} />
+          }
+        />
         <Route path="signup" element={<Signup />} />
       </Routes>
     </Layout>
