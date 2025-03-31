@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { fetchAllProducts } from "./sanity/productsServices";
+import {
+  fetchAllProducts,
+  fetchProductByCategories,
+} from "./sanity/productsServices";
 import { fetchAllCategories } from "./sanity/catecoryServices";
 
 function App() {
@@ -16,7 +19,12 @@ function App() {
 
   const getAllCategories = async () => {
     const data = await fetchAllCategories();
-    console.log("categories", data);
+    setCategories(data);
+  };
+
+  const getProductsByCategory = async (cat) => {
+    const data = await fetchProductByCategories(cat);
+    setProducts(data);
   };
 
   console.log(products);
@@ -29,6 +37,14 @@ function App() {
   return (
     <main>
       <h1>Min nettbutikk</h1>
+      {categories?.map((category) => (
+        <button
+          key={category._id}
+          onClick={() => getProductsByCategory(category.categoryname)}
+        >
+          {category.categoryname}
+        </button>
+      ))}
       {products?.map((product) => (
         <article key={product._id}>
           <h3>{product.productname}</h3>

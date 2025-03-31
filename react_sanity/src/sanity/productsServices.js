@@ -19,3 +19,11 @@ export async function fetchAllProducts() {
   // Returnerer resultatet av spørringen som en array av produktobjekter
   return data;
 }
+
+export async function fetchProductByCategories(cat) {
+  const data = await client.fetch(
+    `*[_type == 'products' && $cat in categories[]-> categoryname]`,
+    { cat }
+  );
+  return data;
+}
