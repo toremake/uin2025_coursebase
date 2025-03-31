@@ -7,6 +7,11 @@ import {
   fetchProductByCategories,
 } from "./sanity/productsServices";
 import { fetchAllCategories } from "./sanity/catecoryServices";
+import Layout from "./components/Layout";
+import { Route, Routes } from "react-router-dom";
+import Product from "./components/Product";
+import Category from "./components/Category";
+import Home from "./components/Home";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -35,23 +40,24 @@ function App() {
   }, []);
 
   return (
-    <main>
-      <h1>Min nettbutikk</h1>
-      {categories?.map((category) => (
-        <button
-          key={category._id}
-          onClick={() => getProductsByCategory(category.categoryname)}
-        >
-          {category.categoryname}
-        </button>
-      ))}
-      {products?.map((product) => (
-        <article key={product._id}>
-          <h3>{product.productname}</h3>
-          <img src={product.image.asset.url} alt={product.productname} />
-        </article>
-      ))}
-    </main>
+    <>
+      <Layout>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                products={products}
+                categories={categories}
+                getProductsByCategory={getProductsByCategory}
+              />
+            }
+          />
+          <Route path="product/:product" element={<Product />} />
+          <Route path="category/:category" element={<Category />} />
+        </Routes>
+      </Layout>
+    </>
   );
 }
 
