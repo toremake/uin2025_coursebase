@@ -55,6 +55,7 @@ function App() {
           />
           <Route path="product/:product" element={<Product />} />
           <Route path="category/:category" element={<Category />} />
+          <Route path="category/" element={<Category />} />
         </Routes>
       </Layout>
     </>
