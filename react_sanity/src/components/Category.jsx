@@ -1,10 +1,11 @@
 import { Link, useParams } from "react-router-dom";
-import { fetchAllParentCategories } from "../sanity/catecoryServices";
+import { fetchAllParentCategories, fetchCategoryBySlug } from "../sanity/catecoryServices";
 import { useEffect, useState } from "react";
 import { fetchProductsByParentCategory } from "../sanity/productsServices";
 
 export default function Category() {
   const { category } = useParams();
+  const [categoryId, setCategoryId] = useState()
   const [parentCategories, setParentCategories] = useState([]);
 
   const getAllParentCategories = async () => {
@@ -13,18 +14,27 @@ export default function Category() {
   };
   console.log(parentCategories);
 
-  const getProductByParentC = async () => {
-    const data = await fetchProductsByParentCategory();
-    console.log(data);
+  const getCategoryBySlug = async(slug)=>{
+    const data = await fetchCategoryBySlug(slug)
+    setCategoryId(data[0]._id)
+    
+  }
+  
+
+
+  const getProductByParentC = async (id) => {
+    const data = await fetchProductsByParentCategory(id);
+    console.log("sjekk",data);
   };
 
   useEffect(() => {
     getAllParentCategories();
+    getCategoryBySlug(category)
   }, []);
 
   useEffect(() => {
-    getProductByParentC();
-  }, [category]);
+    getProductByParentC(categoryId);
+  }, [categoryId]);
 
   return (
     <>
