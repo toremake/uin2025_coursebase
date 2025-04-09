@@ -19,7 +19,6 @@ export default function Category() {
     const data = await fetchProductsByParentCategory(id);
     setCategories(data)
 
-
   };
 
   console.log("kategorier",categories)

@@ -55,7 +55,7 @@ function App() {
           />
           <Route path="product/:product" element={<Product />} />
           <Route path="category/:category" element={<Category />} />
-          <Route path="category/:category/:subcategory" element={<SubCategory />} />
+          <Route path="category/:category/:subcategory" element={<SubCategory getProductsByCategory={getProductsByCategory} products={products} />} />
           <Route path="category/" element={<Category />} />
         </Routes>
       </Layout>
